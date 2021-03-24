@@ -8,7 +8,7 @@ from datetime import datetime
 
 
 
-frame=pd.read_table('../resources/data.csv',skiprows=3, header=None,usecols=range(0,4), delimiter=',')
+frame=pd.read_table('resources\data.csv',skiprows=3, header=None,usecols=range(0,4), delimiter=',')
 frame.columns=["Date","Time","total","daily"]
 # define the columns names of the data then convert to dataframe
 
@@ -20,10 +20,9 @@ print(df)
 data=df.to_numpy()
 print(data)
 
-
-X_train, X_test, y_train, y_test = train_test_split(df, data, test_size = 0.25)
+X_bike, X_test, y_bike, y_test = train_test_split(df, data, test_size = 0.25)
 # validate set shapes
-print(X_train.shape, y_train.shape)
+print(X_bike.shape, y_bike.shape)
 print(X_test.shape, y_test.shape)
 
 from timeit import default_timer as timer
@@ -32,12 +31,11 @@ start_ho = timer()
 from sklearn import linear_model
 
 lm = linear_model.LinearRegression()
-model = lm.fit(X_train, y_train)
+model = lm.fit(X_bike, y_bike)
 # generate predictions
 predictions = lm.predict(X_test)
 end_ho = timer()
-# calcualte function runtime
-time_ho = (end_ho - start_ho)
+
 # show predictions
 print(predictions)
-https://stackoverflow.com/questions/16453644/regression-with-date-variable-using-scikit-learnàcv
+
