@@ -6,7 +6,7 @@ import utils
 def main():
     """ Main program """
     parser= utils.DataParsing('../resources','data.csv')
-    result= parser.parseCSV()
+    
     
     return 0
 
