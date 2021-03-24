@@ -20,22 +20,3 @@ print(df)
 data=df.to_numpy()
 print(data)
 
-X_bike, X_test, y_bike, y_test = train_test_split(df, data, test_size = 0.25)
-# validate set shapes
-print(X_bike.shape, y_bike.shape)
-print(X_test.shape, y_test.shape)
-
-from timeit import default_timer as timer
-start_ho = timer()
-# fit a model using linear model method from sklearn
-from sklearn import linear_model
-
-lm = linear_model.LinearRegression()
-model = lm.fit(X_bike, y_bike)
-# generate predictions
-predictions = lm.predict(X_test)
-end_ho = timer()
-
-# show predictions
-print(predictions)
-
