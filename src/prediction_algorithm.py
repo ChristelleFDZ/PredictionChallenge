@@ -63,34 +63,36 @@ Y= df['Date']
 
 X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size = 0.03, random_state=5)
 
-X_labels=pd.DataFrame(np.c_[df['Time'],df['daily']],columns=['Time','daily'])
-Y_labels= df['Date_formated']
+#to create a axis for date and time:
+#X_labels=pd.DataFrame(np.c_[df['Time'],df['daily']],columns=['Time','daily'])
+#Y_labels= df['Date_formated']
 
-X_labels_train, X_labels_test, Y_labels_train, Y_labels_test = train_test_split(X_labels, Y_labels, test_size = 0.03, random_state=5)
+#X_labels_train, X_labels_test, Y_labels_train, Y_labels_test = train_test_split(X_labels, Y_labels, test_size = 0.03, random_state=5)
 
-lmodellineaire = LinearRegression()
-lmodellineaire.fit(X_train, Y_train)
+
+lregression = LinearRegression()
+lregression.fit(X_train, Y_train)
 
 # Evaluation of training set
-y_train_predict = lmodellineaire.predict(X_train)
-rmse = (np.sqrt(mean_squared_error(Y_train, y_train_predict)))
-r2 = r2_score(Y_train, y_train_predict)
- 
+y_trainpredict = lregression.predict(X_train)
+etype = (np.sqrt(mean_squared_error(Y_train, y_trainpredict)))
+R2 = r2_score(Y_train, y_trainpredict)
+
  
 # model evaluation for testing set
-y_test_predict = lmodellineaire.predict(X_test)
-rmse = (np.sqrt(mean_squared_error(Y_test, y_test_predict)))
-r2 = r2_score(Y_test, y_test_predict)
- 
+y_testpredict = lregression.predict(X_test)
+etype = (np.sqrt(mean_squared_error(Y_test, y_testpredict)))
+R2 = r2_score(Y_test, y_testpredict)
+
 
 X_test=np.arange(0,len(X_test),1)
 
 # Plot outputs
 plt.scatter( X_test,Y_test,  color='black')
-plt.plot( X_test,y_test_predict, color='blue', linewidth=3)
+plt.plot( X_test,y_testpredict, color='red', linewidth=3)
 #plt.yticks(Y_test,Y_labels_test) mathplolib hardly responsive
 plt.show()
 
 print('The result for the prediction is:')
-print(np.sqrt(metrics.mean_squared_error(Y_test, y_test_predict)))
+print(np.sqrt(metrics.mean_squared_error(Y_test, y_testpredict)))
 
